@@ -65,6 +65,7 @@ $RG_PREFIX="rg "`
     + "$USE_GITIGNORE_OPT "`
     + "--line-number "`
     + "--no-heading "`
+    + "--field-match-separator * "`
     + "--color=always "`
     + "--smart-case "`
     + "--colors `"match:fg:green`" "`
@@ -105,15 +106,15 @@ if( $QUERYPARAM -ne "" )
     if($PREVIEW_ENABLED -eq 1) {
         # I can't get it not to report an error || true trick doesn't work in powershell.
         # $ErrorActionPreference="SilentlyContinue";
-        $result=fzf --delimiter ":" --phony "$QUERYPARAM" "$INITIAL_QUERY" --ansi --cycle --bind "change:reload:powershell -m Start-Sleep .1; $RG_PREFIX {q} $PATHS; ''" --preview "$PREVIEW_COMMAND" --preview-window "$PREVIEW_WINDOW"
+        $result=fzf --delimiter "*" --nth 1,2,3 --phony "$QUERYPARAM" "$INITIAL_QUERY" --ansi --cycle --bind "change:reload:powershell -m Start-Sleep .1; $RG_PREFIX {q} $PATHS; ''" --preview "$PREVIEW_COMMAND" --preview-window "$PREVIEW_WINDOW"
     } else {
-        $result=fzf --delimiter ":" --phony "$QUERYPARAM" "$INITIAL_QUERY" --ansi --cycle --bind "change:reload:powershell -m Start-Sleep .1; $RG_PREFIX {q} $PATHS; ''" 
+        $result=fzf --delimiter "*" --phony "$QUERYPARAM" "$INITIAL_QUERY" --ansi --cycle --bind "change:reload:powershell -m Start-Sleep .1; $RG_PREFIX {q} $PATHS; ''" 
     }   
 } else {
     if($PREVIEW_ENABLED -eq 1) {
-        $result=fzf --delimiter ":" --ansi --cycle --bind "change:reload:powershell -m Start-Sleep .1; $RG_PREFIX {q} $PATHS; ''" --preview "$PREVIEW_COMMAND" --preview-window "$PREVIEW_WINDOW"
+        $result=fzf --delimiter "*" --ansi --cycle --bind "change:reload:powershell -m Start-Sleep .1; $RG_PREFIX {q} $PATHS; ''" --preview "$PREVIEW_COMMAND" --preview-window "$PREVIEW_WINDOW"
     } else {
-        $result=fzf --delimiter ":" --ansi --cycle --bind "change:reload:powershell -m Start-Sleep .1; $RG_PREFIX {q} $PATHS; ''" 
+        $result=fzf --delimiter "*" --ansi --cycle --bind "change:reload:powershell -m Start-Sleep .1; $RG_PREFIX {q} $PATHS; ''" 
     }
 }
 
