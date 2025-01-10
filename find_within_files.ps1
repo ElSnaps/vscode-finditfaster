@@ -72,6 +72,15 @@ $RG_PREFIX="rg "`
     + "--colors `"path:fg:white`" "`
     + "--colors `"path:style:nobold`" "`
     + "--glob `"!**/.git/`" "`
+    + "--glob `"!**/.vs/`" "`
+    + "--glob `"!**/.vscode/`" "`
+    + "--glob `"!**/DerivedDataCache/`" "`
+    + "--glob `"!**/ArchivedBuilds/`" "`
+    + "--glob `"!**/Build/*`" "`
+    + "--glob `"!**/Intermediate/*`" "`
+    + "--glob `"!**/Saved/*`" "`
+    + "--glob `"!**/Tools/`" "`
+    + "--glob `"!**/Engine/Source/ThirdParty/*`" "`
     + "$GLOBS"
 
 if ($TYPE_FILTER_ARR.Count -gt 0) {
